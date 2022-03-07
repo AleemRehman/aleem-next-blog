@@ -38,9 +38,11 @@ const renderBlock = (block) => {
   switch (type) {
     case "paragraph":
       return (
-        <p>
-          <Text text={value.text} />
-        </p>
+        <>
+          {value.rich_text?.map((block) => (
+            <p1>{block.text.content}</p1>
+          ))}
+        </>
       )
     case "heading_1":
       return (
@@ -174,6 +176,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const { id } = context.params
   const page = await getPage(id)
+
   const blocks = await getBlocks(id)
 
   // Retrieve block children for nested blocks (one level deep), for example toggle blocks

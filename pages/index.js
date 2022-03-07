@@ -10,7 +10,7 @@ export default function Home({ posts }) {
   return (
     <div>
       <Head>
-        <title>Notion Next.js blog</title>
+        <title>Aleem's Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -49,7 +49,7 @@ export default function Home({ posts }) {
           </div>
         </header>
 
-        <h2 className={styles.heading}>All Posts</h2>
+        <h2 className={styles.heading}>Featured Projects</h2>
         <ol className={styles.posts}>
           {posts.map((post) => {
             const date = new Date(post.last_edited_time).toLocaleString(
@@ -85,7 +85,6 @@ export default function Home({ posts }) {
 
 export const getStaticProps = async () => {
   const database = await getDatabase(databaseId)
-
   return {
     props: {
       posts: database,
