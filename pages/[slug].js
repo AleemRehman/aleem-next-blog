@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import Head from "next/head"
-import { getDatabase, getPage, getBlocks } from "utils/api"
+import { getDatabase, getPage, getBlocks, getNotionData } from "utils/api"
 import Link from "next/link"
 import { databaseId } from "./index.js"
 import styles from "./post.module.css"
@@ -165,21 +165,27 @@ export default function Post({ page, blocks }) {
 }
 
 export const getStaticPaths = async () => {
-  const database = await getDatabase(databaseId)
+  const database = await getNotionData(databaseId)
   return {
-    paths: database.map((page) => ({ params: { id: page.id } })),
-    fallback: true,
+    paths: database.map((page) => ({
+      params: {
+        slug: page.properties.Slug.rich_text[0].plain_text,
+      },
+    })),
+    fallback: false,
   }
 }
 
 export const getStaticProps = async (context) => {
-  const { id } = context.params
-  const page = await getPage(id)
+  const { slug } = context.params
 
-  const blocks = await getBlocks(id)
+  const database = await getNotionData(databaseId)
+  const filter = database.filter(
+    (blog) => blog.properties.Slug.rich_text[0].plain_text === slug
+  )
+  const page = await getPage(filter[0].id)
+  const blocks = await getBlocks(filter[0].id)
 
-  // Retrieve block children for nested blocks (one level deep), for example toggle blocks
-  // https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
   const childBlocks = await Promise.all(
     blocks
       .filter((block) => block.has_children)

@@ -33,3 +33,18 @@ export const getBlocks = async (blockId) => {
   }
   return blocks
 }
+
+export const getNotionData = async (databaseId) => {
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    // Sort posts in descending order based on the Date column.
+    sorts: [
+      {
+        property: "Date",
+        direction: "descending",
+      },
+    ],
+  })
+
+  return response.results
+}
