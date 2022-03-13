@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Link from "next/link"
-import { getDatabase } from "../lib/api"
+import { getDatabase } from "utils/api"
 import { Text } from "./[id].js"
 import styles from "./index.module.css"
 

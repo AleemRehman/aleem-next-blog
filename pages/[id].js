@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import Head from "next/head"
-import { getDatabase, getPage, getBlocks } from "../lib/api"
+import { getDatabase, getPage, getBlocks } from "utils/api"
 import Link from "next/link"
 import { databaseId } from "./index.js"
 import styles from "./post.module.css"
