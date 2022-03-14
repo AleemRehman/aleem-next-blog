@@ -9,10 +9,19 @@
   },
   "dependencies": {
     "@notionhq/client": "^1.0.1",
+    "autoprefixer": "^10.4.2",
+    "framer-motion": "^6.2.8",
     "next": "12.0.1",
+    "next-seo": "^5.1.0",
+    "postcss": "^8.4.8",
     "react": "17.x",
     "react-dom": "17.x",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.6.2",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.40"
   }
 }
