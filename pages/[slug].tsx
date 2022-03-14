@@ -1,8 +1,9 @@
 import { Fragment } from "react"
 import Head from "next/head"
-import { getDatabase, getPage, getBlocks, getNotionData } from "utils/api"
+import { getPage, getBlocks, getNotionData } from "utils/api"
 import Link from "next/link"
-import { databaseId } from "./index.js"
+import { databaseId } from "./index"
+import Page from "components/page"
 import styles from "./post.module.css"
 
 export const Text = ({ text }) => {
@@ -141,26 +142,28 @@ export default function Post({ page, blocks }) {
     return <div />
   }
   return (
-    <div>
-      <Head>
-        <title>{page.properties.Name.title[0].plain_text}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Page>
+      <div>
+        <Head>
+          <title>{page.properties.Name.title[0].plain_text}</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <article className={styles.container}>
-        <h1 className={styles.name}>
-          <Text text={page.properties.Name.title} />
-        </h1>
-        <section>
-          {blocks.map((block) => (
-            <Fragment key={block.id}>{renderBlock(block)}</Fragment>
-          ))}
-          <Link href="/">
-            <a className={styles.back}>← Go home</a>
-          </Link>
-        </section>
-      </article>
-    </div>
+        <article className={styles.container}>
+          <h1 className={styles.name}>
+            <Text text={page.properties.Name.title} />
+          </h1>
+          <section>
+            {blocks.map((block) => (
+              <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+            ))}
+            <Link href="/">
+              <a className={styles.back}>← Go home</a>
+            </Link>
+          </section>
+        </article>
+      </div>
+    </Page>
   )
 }
 
