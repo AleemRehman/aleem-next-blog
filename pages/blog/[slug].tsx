@@ -2,9 +2,9 @@ import { Fragment } from "react"
 import Head from "next/head"
 import { getPage, getBlocks, getNotionData } from "utils/api"
 import Link from "next/link"
-import { databaseId } from "./index"
+import { databaseId } from "../index"
 import Page from "components/page"
-import styles from "./post.module.css"
+import styles from "pages/blog/post.module.scss"
 
 export const Text = ({ text }) => {
   if (!text) {

@@ -1,8 +1,6 @@
-// import "styles/globals.css"
 import Link from "next/link"
-// import ThemeChanger from "components/themechanger"
 import { useRouter } from "next/router"
-import Image from "next/image"
+import styles from "components/header/header.module.css"
 
 const links = [
   { name: "Home", path: "/" },
@@ -12,12 +10,19 @@ const links = [
   { name: "Reviews", path: "/Reviews" },
 ]
 
+const link =
+  "p-2 lg:px-4 md:mx-2 text-gray-600 rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300"
+
+const linkActive =
+  "p-2 lg:px-4 md:mx-2 text-blue-600 rounded hover:bg-blue-200 hover:text-gray-700 transition-colors duration-300"
+
 const Header = (): JSX.Element => {
   const router = useRouter()
-  const pathname = router.pathname.split("/[")[0] // active paths on dynamic subpages
+  const pathname = router.pathname.split("/[")[0] // active paths on dynamic
+  console.log(pathname)
   return (
     <>
-      <div className="header-2">
+      <div className={styles.navheader}>
         <nav className="bg-white py-2 md:py-4">
           <div className="container px-4 mx-auto md:flex md:items-center">
             <div className="flex justify-between items-center">
@@ -27,7 +32,7 @@ const Header = (): JSX.Element => {
               >
                 {links.map(({ name, path }) => (
                   <Link key={path} href={path}>
-                    <a className="p-2 lg:px-4 md:mx-2 text-gray-600 rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300">
+                    <a className={pathname === path ? linkActive : link}>
                       {name}
                     </a>
                   </Link>
