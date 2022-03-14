@@ -52,7 +52,6 @@ export default function Home({ posts }) {
         <h2 className={styles.heading}>Featured Projects</h2>
         <ol className={styles.posts}>
           {posts.map((post) => {
-            console.log(post)
             if (!post.properties.Slug) {
               return (
                 <li key={post.id} className={styles.post}>
