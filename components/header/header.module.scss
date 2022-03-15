@@ -1,0 +1,13 @@
+@import "styles/variables.scss";
+
+.navheader {
+  margin-bottom: 50px;
+}
+
+.link {
+  color: $chalk !important;
+}
+
+.linkIsActive {
+  color: red !important;
+}
