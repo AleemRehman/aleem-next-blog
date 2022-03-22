@@ -1,9 +1,9 @@
 import { DefaultSeo } from "next-seo"
 
 const config = {
-  title: "Aleem Rehman - Solutions Architect & Mentor",
+  title: "Aleem Rehman - Engineer & Mentor",
   description:
-    "I’m a Solutions Architect that loves building effective products and writing about all the associated technologies!",
+    "I’m an Engineer and Architect that loves building effective products and writing about all the associated technologies!",
   openGraph: {
     type: "website",
     locale: "en_GB",

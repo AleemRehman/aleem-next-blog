@@ -5,9 +5,23 @@
 }
 
 .link {
-  color: $chalk !important;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  &:hover {
+    color: $green !important;
+  }
+}
+
+.inActiveLink {
+  @extend .link;
+  color: $grey-10 !important;
+  font-weight: 500;
 }
 
 .linkIsActive {
-  color: red !important;
+  @extend .link;
+  color: $chalk !important;
+  font-weight: 650;
 }
