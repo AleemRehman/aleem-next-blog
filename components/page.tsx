@@ -10,7 +10,7 @@ type PageProps = {
 const Page = ({ children }: PageProps): JSX.Element => (
   <div className="">
     <Header />
-    <main className="">
+    <main className="flex flex-col mx-auto max-w-6xl justify-center px-4 prose prose-lg md:prose-xl dark:prose-dark relative">
       <PageTransition>{children}</PageTransition>
     </main>
     {/* <footer className={styles.footer}>

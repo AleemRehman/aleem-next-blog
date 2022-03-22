@@ -1,0 +1,32 @@
+.button-base {
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  font-weight: 550;
+}
+
+.primary {
+  @extend .button-base;
+  color: $chalk;
+  background-color: $grey-75;
+
+  &:hover {
+    color: $chalk-25;
+  }
+}
+
+.secondary {
+  @extend .button-base;
+  color: $grey-75;
+  background-color: $chalk;
+  opacity: 60%;
+
+  &:hover {
+    color: $green-50;
+    opacity: 90%;
+  }
+}
+
+.other {
+}

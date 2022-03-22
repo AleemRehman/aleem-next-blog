@@ -1,65 +1,68 @@
-import Head from "next/head"
-import Link from "next/link"
 import { getDatabase } from "utils/api"
+import Typed from "typed.js"
 import Page from "components/page"
-import { Text } from "pages/blog/[slug]"
+import { Button } from "components/button/button"
+import { useRouter } from "next/router"
+import { useEffect, useRef } from "react"
 import styles from "pages/index.module.scss"
 
 export const databaseId = process.env.NOTION_ARTICLES_DATABASE_ID
 
 export default function Home({ posts }) {
+  const { push } = useRouter()
+
+  const el = useRef(null)
+
+  useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ["My name is Aleem. I am an Architect, Engineer and Blogger."], // Strings to display
+      // Speed settings, try diffrent values untill you get good results
+      startDelay: 50,
+      typeSpeed: 100,
+      backSpeed: 100,
+      backDelay: 100,
+    })
+
+    // Destropying
+    return () => {
+      typed.destroy()
+    }
+  }, [])
   return (
     <div>
-      {/* <Head>
-        <title>Aleem's Blog</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head> */}
       <Page>
-        <h2 className={styles.heading}>Featured Projects</h2>
-        <ol className={styles.posts}>
-          {posts.map((post) => {
-            if (!post.properties.Slug) {
-              return (
-                <li key={post.id} className={styles.post}>
-                  <h4>
-                    <a>
-                      <Text text={post.properties.Name.title} />
-                    </a>
-                    <span>This doesn't have a slug, add one now!</span>
-                  </h4>
-                </li>
-              )
-            }
-            const date = new Date(post.last_edited_time).toLocaleString(
-              "en-US",
-              {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-              }
-            )
-            return (
-              <li key={post.id} className={styles.post}>
-                <h3 className={styles.postTitle}>
-                  <Link
-                    href={`/blog/${post.properties.Slug.rich_text[0].plain_text}`}
+        <div className="z-10">
+          <div className="splash-header">
+            <div>
+              <div
+                className={
+                  "grid items-center grid-cols-1 mt-12 text-center md:mt-20 mb-4 md:mb-8 md:text-left md:grid-cols-6 " +
+                  styles.header_grid
+                }
+              >
+                <h1 className={styles.terminal_text}>
+                  &gt; <span ref={el}></span>
+                </h1>
+              </div>
+              <div className="">
+                <div className="space-y-6 md:space-y-0 md:space-x-4">
+                  <Button
+                    buttonType="primary"
+                    onButtonClick={() => push("/blog")}
                   >
-                    <a>
-                      <Text text={post.properties.Name.title} />
-                    </a>
-                  </Link>
-                </h3>
-
-                <p className={styles.postDescription}>{date}</p>
-                <Link
-                  href={`/blog/${post.properties.Slug.rich_text[0].plain_text}`}
-                >
-                  <a> Read post →</a>
-                </Link>
-              </li>
-            )
-          })}
-        </ol>
+                    Read my Articles
+                  </Button>
+                  <Button
+                    buttonType="secondary"
+                    onButtonClick={() => push("/blog")}
+                  >
+                    Check out my Projects
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </Page>
     </div>
   )
