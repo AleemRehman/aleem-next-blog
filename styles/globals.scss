@@ -31,7 +31,12 @@ a {
 }
 
 h1 {
+  @apply text-3xl;
   font-weight: 900;
+}
+
+h2 {
+  @apply text-2xl;
 }
 
 h1,

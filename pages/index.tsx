@@ -18,10 +18,8 @@ export default function Home({ recentArticles }) {
     const typed = new Typed(el.current, {
       strings: ["My name is Aleem. I am an Architect, Engineer and Blogger."],
 
-      startDelay: 50,
-      typeSpeed: 100,
-      backSpeed: 100,
-      backDelay: 100,
+      startDelay: 10,
+      typeSpeed: 70,
     })
 
     return () => {
@@ -33,7 +31,7 @@ export default function Home({ recentArticles }) {
     <div>
       <Page>
         <div className="z-10">
-          <div className="splash-header">
+          <div>
             <div>
               <div
                 className={
@@ -61,6 +59,10 @@ export default function Home({ recentArticles }) {
                   </Button>
                 </div>
               </div>
+            </div>
+            <hr className={styles.index_divider} />
+            <div>
+              <h2>I like to talk about tech and rant about society</h2>
             </div>
           </div>
         </div>

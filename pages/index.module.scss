@@ -40,35 +40,14 @@
   }
 }
 
-.posts {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.post {
-  margin-bottom: 50px;
-}
-
-.postTitle {
-  margin-bottom: 10px;
-  font-size: 1.4rem;
-}
-
-.postTitle a {
-  color: inherit;
-}
-
-.postDescription {
-  margin-top: 0;
-  margin-bottom: 12px;
-  opacity: 0.65;
-}
-
 .terminal_text {
-  @apply order-2 col-span-5 text-4xl leading-tight md:leading-normal md:order-1 sm:text-5xl;
+  @apply order-2 col-span-5 text-2xl leading-tight md:leading-normal md:order-1 sm:text-5xl;
 }
 
 .header_grid {
   min-height: 150px;
+}
+
+.index_divider {
+  @apply my-16 sm:my-11 w-full border-none text-center h-10 before:content-[''];
 }
