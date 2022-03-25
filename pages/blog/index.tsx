@@ -2,7 +2,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { getDatabase } from "utils/api"
 import Page from "components/page"
-import { Text } from "pages/blog/[slug]"
+import { Text } from "components/pagerender/pagerender"
 import styles from "pages/index.module.scss"
 
 export const databaseId = process.env.NOTION_ARTICLES_DATABASE_ID

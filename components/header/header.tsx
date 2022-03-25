@@ -9,7 +9,6 @@ const links = [
   { name: "About", path: "/about" },
   { name: "Blog", path: "/blog" },
   { name: "Projects", path: "/Projects" },
-  { name: "Reviews", path: "/Reviews" },
 ]
 
 const Header = (): JSX.Element => {

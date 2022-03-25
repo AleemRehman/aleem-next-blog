@@ -1,33 +1,34 @@
-import { getDatabase } from "utils/api"
 import Typed from "typed.js"
+import { GetStaticProps } from "next"
 import Page from "components/page"
 import { Button } from "components/button/button"
 import { useRouter } from "next/router"
 import { useEffect, useRef } from "react"
 import styles from "pages/index.module.scss"
+import { getPublishedArticles } from "utils/api"
 
 export const databaseId = process.env.NOTION_ARTICLES_DATABASE_ID
 
-export default function Home({ posts }) {
+export default function Home({ recentArticles }) {
   const { push } = useRouter()
 
   const el = useRef(null)
 
   useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ["My name is Aleem. I am an Architect, Engineer and Blogger."], // Strings to display
-      // Speed settings, try diffrent values untill you get good results
+      strings: ["My name is Aleem. I am an Architect, Engineer and Blogger."],
+
       startDelay: 50,
       typeSpeed: 100,
       backSpeed: 100,
       backDelay: 100,
     })
 
-    // Destropying
     return () => {
       typed.destroy()
     }
   }, [])
+
   return (
     <div>
       <Page>
@@ -68,12 +69,13 @@ export default function Home({ posts }) {
   )
 }
 
-export const getStaticProps = async () => {
-  const database = await getDatabase(databaseId)
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getPublishedArticles(databaseId)
+  console.log(data)
   return {
     props: {
-      posts: database,
+      recentArticles: data,
     },
-    revalidate: 1,
+    revalidate: 30,
   }
 }

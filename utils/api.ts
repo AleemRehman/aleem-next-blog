@@ -1,4 +1,5 @@
 import { Client } from "@notionhq/client"
+import { generateProjectVariable, generateArticleVariable } from "utils/jobs"
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -47,4 +48,46 @@ export const getNotionData = async (databaseId) => {
   })
 
   return response.results
+}
+
+export const getPublishedArticles = async (databaseId) => {
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      and: [
+        {
+          property: "Status",
+          select: {
+            equals: "Published",
+          },
+        },
+        {
+          property: "Type",
+          select: {
+            equals: "Article",
+          },
+        },
+        {
+          property: "Public",
+          checkbox: {
+            equals: true,
+          },
+        },
+      ],
+    },
+    sorts: [
+      {
+        property: "Date",
+        direction: "descending",
+      },
+    ],
+  })
+
+  var results = response.results
+
+  var articles = results.map((result: any) => {
+    return generateArticleVariable(result)
+  })
+
+  return { articles }
 }
