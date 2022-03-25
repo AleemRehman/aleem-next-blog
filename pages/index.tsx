@@ -73,7 +73,7 @@ export default function Home({ recentArticles }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await getPublishedArticles(databaseId)
-  console.log(data)
+
   return {
     props: {
       recentArticles: data,
