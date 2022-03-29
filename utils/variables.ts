@@ -1,6 +1,6 @@
 export type Article = {
   title: string
-  tags?: string[]
+  tags?: []
   coverImage: string
   summary: string
   publishedDate?: any
