@@ -26,11 +26,11 @@ export function ArticleCard({ article }: Props) {
         {/* <div className="flex items-center mt-4">
           <div className="grid-cols-4 gap-4"> */}
         <div className="sm:col-span-2">
-          <div className="flex flex-wrap items-center space-x-3">
-            <div className="flex flex-wrap items-center space-x-2">
+          <div className="flex flex-wrap space-y-3">
+            <div className="flex flex-wrap space-y-5">
               {article.tags.map((tag) => {
                 return (
-                  <span className="inline-flex items-center leading-none px-2.5 py-1.5 text-sm font-medium text-skin-inverted rounded-full border border-skin-input">
+                  <span className="inline-flex items-center leading-none px-2.5 py-1.5 text-sm font-medium text-skin-inverted rounded-full border border-skin-input mr-2">
                     <svg
                       className="mr-1.5 h-2 w-2 brand-react"
                       fill="currentColor"
