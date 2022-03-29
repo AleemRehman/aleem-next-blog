@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import { useEffect, useRef } from "react"
 import styles from "pages/index.module.scss"
 import { getPublishedArticles } from "utils/api"
+import { ArticleList } from "components/articlescarousel"
 
 export const databaseId = process.env.NOTION_ARTICLES_DATABASE_ID
 
@@ -62,7 +63,8 @@ export default function Home({ recentArticles }) {
             </div>
             <hr className={styles.index_divider} />
             <div>
-              <h2>I like to talk about tech and rant about society</h2>
+              <h2>I like to talk about tech and rant about accessibility</h2>
+              <ArticleList articles={recentArticles} />
             </div>
           </div>
         </div>
@@ -72,11 +74,11 @@ export default function Home({ recentArticles }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await getPublishedArticles(databaseId)
+  const { articles } = await getPublishedArticles(databaseId)
 
   return {
     props: {
-      recentArticles: data,
+      recentArticles: articles,
     },
     revalidate: 30,
   }
