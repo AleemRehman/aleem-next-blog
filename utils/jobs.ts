@@ -2,6 +2,7 @@ import { Article, Project } from "utils/variables"
 
 export const generateArticleVariable = (inputData: any) => {
   let tags: string[] = []
+  console.log(Object.keys(inputData.properties))
   return {
     title: inputData.properties.Name.title[0].plain_text,
     tags: inputData.properties.Tags.multi_select.map((tag) => {
@@ -11,6 +12,7 @@ export const generateArticleVariable = (inputData: any) => {
       }
       return { name: tag.name, id: tag.id }
     }),
+    slug: inputData.properties?.Slug.rich_text[0]?.plain_text,
     summary: inputData.properties?.Summary?.rich_text[0]?.plain_text ?? "",
     public: inputData.properties.Public.checkbox,
     coverImage: inputData.properties["Cover Image"].url,

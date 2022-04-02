@@ -63,7 +63,12 @@ export default function Home({ recentArticles }) {
             </div>
             <hr className={styles.index_divider} />
             <div>
-              <h2>I like to talk about tech and rant about accessibility</h2>
+              <h2 className="mb-4 font-semibold text-4xl">
+                I like to give my two cents about tech and life ✍🏾
+              </h2>
+              <h5 className="mb-8 font-semibold text-lg">
+                Check out some recent writings below.
+              </h5>
               <ArticleList articles={recentArticles} />
             </div>
           </div>
