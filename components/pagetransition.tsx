@@ -17,7 +17,12 @@ const variants = {
 }
 
 const PageTransition = ({ children }: { children: ReactNode }): JSX.Element => (
-  <motion.div initial="initial" animate="enter" variants={variants}>
+  <motion.div
+    className="z-10"
+    initial="initial"
+    animate="enter"
+    variants={variants}
+  >
     {children}
   </motion.div>
 )

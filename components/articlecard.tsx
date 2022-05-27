@@ -5,13 +5,14 @@ import { Article } from "utils/variables"
 
 type Props = {
   article: Article
+  showTags: boolean
 }
 
 function handleArticleClick(slug, router) {
-  router.push(`/blog/${slug}`)
+  router.push(`/writings/${slug}`)
 }
 
-export function ArticleCard({ article }: Props) {
+export function ArticleCard({ showTags, article }: Props) {
   const router = useRouter()
   return (
     <button
@@ -35,19 +36,23 @@ export function ArticleCard({ article }: Props) {
           <div className="mb-2">
             <p>{article.summary}</p>
           </div>
-          <div className="sm:col-span-2">
-            <div className="flex flex-wrap space-y-3">
-              <div className="flex flex-wrap">
-                {article.tags.map((tag) => {
-                  return (
-                    <span className="inline-flex items-center leading-none px-2.5 py-1.5 text-sm font-semibold text-skin-inverted rounded-full border border-skin-input mr-2 mb-2">
-                      #{tag.name}
-                    </span>
-                  )
-                })}
+          {showTags ? (
+            <div className="sm:col-span-2">
+              <div className="flex flex-wrap space-y-3">
+                <div className="flex flex-wrap">
+                  {article.tags.map((tag) => {
+                    return (
+                      <span className="inline-flex items-center leading-none px-2.5 py-1.5 text-sm font-semibold text-skin-inverted rounded-full border border-skin-input mr-2 mb-2">
+                        #{tag.name}
+                      </span>
+                    )
+                  })}
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </button>

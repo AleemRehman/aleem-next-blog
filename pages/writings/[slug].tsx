@@ -21,7 +21,7 @@ export default function Post({ page, blocks, recommendedArticles }) {
   }
   const { push } = useRouter()
   return (
-    <Page>
+    <Page backDrop={"case study"}>
       <div>
         <Head>
           <title>{page.properties.Name.title[0].plain_text}</title>
@@ -59,15 +59,35 @@ export default function Post({ page, blocks, recommendedArticles }) {
               <div className="space-y-6 md:space-y-0 md:space-x-4">
                 <Button
                   buttonType="secondary"
-                  onButtonClick={() => push("/blog")}
+                  onButtonClick={() => push("/writings")}
                   buttonSize="small"
                 >
-                  Back to the blog
+                  Back to Writings
+                </Button>
+                <Button
+                  buttonType="primary"
+                  onButtonClick={() => push("/writings")}
+                  buttonSize="small"
+                >
+                  Go to project
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className={styles.newPageArrow}
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+                    />
+                  </svg>
                 </Button>
               </div>
             </div>
             <div>
-              <ArticleList articles={recommendedArticles} />
+              <ArticleList showTags={false} articles={recommendedArticles} />
             </div>
           </section>
         </article>

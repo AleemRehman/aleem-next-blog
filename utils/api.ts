@@ -1,5 +1,10 @@
 import { Client } from "@notionhq/client"
-import { generateProjectVariable, generateArticleVariable } from "utils/jobs"
+import { databaseId } from "pages"
+import {
+  generateProjectVariable,
+  generateArticleVariable,
+  randomRange,
+} from "utils/jobs"
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -92,7 +97,8 @@ export const getPublishedArticles = async (databaseId) => {
   return { articles }
 }
 
-export const getRecommendedArticles = async (databaseId, tags) => {
+export const getRecommendedArticles = async (databaseId, tags, limit = 3) => {
+  //returns random articles by limit passed in with the same tags as the current article
   let filters = []
 
   if (tags) {
@@ -112,7 +118,7 @@ export const getRecommendedArticles = async (databaseId, tags) => {
     or: filters,
   }
 
-  let test = {
+  let allFilters = {
     and: [
       {
         property: "Status",
@@ -136,10 +142,9 @@ export const getRecommendedArticles = async (databaseId, tags) => {
     orTagsFilter,
   }
 
-  console.log(test)
   const response = await notion.databases.query({
     database_id: databaseId,
-    filter: test,
+    filter: allFilters,
     sorts: [
       {
         property: "Date",
@@ -154,5 +159,17 @@ export const getRecommendedArticles = async (databaseId, tags) => {
     return generateArticleVariable(result)
   })
 
+  if (articles.length > limit) {
+    let indexes = randomRange(articles.length + 1, limit)
+    let returnedArticles = []
+    indexes.map((i) => {
+      returnedArticles.push(articles[i])
+    })
+  }
+
   return { articles }
+}
+
+export const getFilteredArticles = async (databaseId, tag) => {
+  //grab articles based on associated tag
 }

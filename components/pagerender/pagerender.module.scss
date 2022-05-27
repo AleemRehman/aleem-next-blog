@@ -22,6 +22,14 @@
   }
 }
 
+.newPageArrow {
+  @apply ml-2;
+  color: #fff;
+  padding: 1px 2px;
+  transition: 0.4s ease all;
+  cursor: pointer;
+}
+
 .container figure {
   margin-left: 0;
   margin-right: 0;

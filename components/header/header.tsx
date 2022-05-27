@@ -7,8 +7,7 @@ import styles from "components/header/header.module.scss"
 const links = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
-  { name: "Blog", path: "/blog" },
-  { name: "Projects", path: "/Projects" },
+  { name: "Writings", path: "/writings" },
 ]
 
 const Header = (): JSX.Element => {

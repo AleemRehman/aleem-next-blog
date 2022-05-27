@@ -13,20 +13,20 @@ export const databaseId = process.env.NOTION_ARTICLES_DATABASE_ID
 export default function Home({ recentArticles }) {
   const { push } = useRouter()
 
-  const el = useRef(null)
+  // const el = useRef(null)
 
-  useEffect(() => {
-    const typed = new Typed(el.current, {
-      strings: ["My name is Aleem. I am an Architect, Engineer and Blogger."],
+  // useEffect(() => {
+  //   const typed = new Typed(el.current, {
+  //     strings: ["My name is Aleem. I am an Architect, Engineer and Blogger."],
 
-      startDelay: 10,
-      typeSpeed: 70,
-    })
+  //     startDelay: 10,
+  //     typeSpeed: 70,
+  //   })
 
-    return () => {
-      typed.destroy()
-    }
-  }, [])
+  //   return () => {
+  //     typed.destroy()
+  //   }
+  // }, [])
 
   return (
     <div>
@@ -41,7 +41,10 @@ export default function Home({ recentArticles }) {
                 }
               >
                 <h1 className={styles.terminal_text}>
-                  &gt; <span ref={el}></span>
+                  &gt;{" "}
+                  <span>
+                    My name is Aleem. I am an Architect, Engineer and Blogger.
+                  </span>
                 </h1>
               </div>
               <div className="">
@@ -71,7 +74,7 @@ export default function Home({ recentArticles }) {
               <h5 className="mb-8 font-semibold text-lg">
                 Check out some recent writings below.
               </h5>
-              <ArticleList articles={recentArticles} />
+              <ArticleList showTags={true} articles={recentArticles} />
             </div>
           </div>
         </div>

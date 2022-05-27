@@ -61,3 +61,19 @@ export const generateProjectVariable = async (inputData) => {
     ),
   }
 }
+
+export function randomRange(to, leng) {
+  var tem,
+    A = [],
+    L = 0,
+    i = 0
+  randomRangeLoop: while (L < leng) {
+    tem = Math.floor(Math.random() * to) + 0
+    i = 0
+    while (i < L) {
+      if (A[i++] === tem) continue randomRangeLoop
+    }
+    A[L++] = tem
+  }
+  return A
+}

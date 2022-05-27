@@ -55,3 +55,11 @@ h5 {
 .grid {
   align-items: start;
 }
+
+.page-type {
+  font-weight: 900;
+  font-family: Tinos, "Times New Roman", Times, serif;
+  color: $creamish-25;
+  opacity: 35%;
+  z-index: 1;
+}
