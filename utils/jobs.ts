@@ -2,7 +2,7 @@ import { Article, Project } from "utils/variables"
 
 export const generateArticleVariable = (inputData: any) => {
   let tags: string[] = []
-  console.log(inputData)
+
   return {
     title: inputData.properties.Name.title[0].plain_text,
     tags: inputData.properties.Tags.multi_select.map((tag) => {

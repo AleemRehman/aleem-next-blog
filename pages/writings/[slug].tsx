@@ -128,9 +128,8 @@ export const getStaticProps = async (context) => {
     return { name: tag.name, id: tag.id }
   })
 
-  const { articles } = await getRecommendedArticles(databaseId, tags)
+  const { articles } = await getRecommendedArticles(databaseId, tags, 3)
 
-  console.log(articles)
   const childBlocks = await Promise.all(
     blocks
       .filter((block) => block.has_children)
