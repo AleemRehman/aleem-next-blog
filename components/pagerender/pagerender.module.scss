@@ -5,13 +5,21 @@
   line-height: 1.5;
 }
 
-.container h1 {
+.container h1:not(.name) {
   font-size: 32px;
 }
 
 .container img {
   width: 100%;
   height: auto;
+}
+
+.date {
+  @apply text-base;
+  text-align: center;
+  span {
+    color: #d6c8c8;
+  }
 }
 
 .container figure {
@@ -23,8 +31,12 @@
   opacity: 0.6;
 }
 
+.title_container {
+}
+
 .name {
-  font-size: 36px;
+  @apply text-7xl;
+  text-align: center;
 }
 
 .back {

@@ -49,12 +49,14 @@ export default function Home({ recentArticles }) {
                   <Button
                     buttonType="primary"
                     onButtonClick={() => push("/blog")}
+                    buttonSize="medium"
                   >
                     Read my Articles
                   </Button>
                   <Button
                     buttonType="secondary"
                     onButtonClick={() => push("/blog")}
+                    buttonSize="medium"
                   >
                     Check out my Projects
                   </Button>

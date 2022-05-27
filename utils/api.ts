@@ -89,7 +89,5 @@ export const getPublishedArticles = async (databaseId) => {
     return generateArticleVariable(result)
   })
 
-  debugger
-  console.log(articles)
   return { articles }
 }

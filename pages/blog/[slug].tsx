@@ -2,7 +2,10 @@ import { Fragment } from "react"
 import Head from "next/head"
 import { getPage, getBlocks, getNotionData } from "utils/api"
 import Link from "next/link"
+import { Button } from "components/button/button"
+import { useRouter } from "next/router"
 import { databaseId } from "../index"
+import Image from "next/image"
 import Page from "components/page"
 import styles from "components/pagerender/pagerender.module.scss"
 import { Text, renderBlock } from "components/pagerender/pagerender"
@@ -11,6 +14,7 @@ export default function Post({ page, blocks }) {
   if (!page || !blocks) {
     return <div />
   }
+  const { push } = useRouter()
   return (
     <Page>
       <div>
@@ -20,16 +24,43 @@ export default function Post({ page, blocks }) {
         </Head>
 
         <article className={styles.container}>
-          <h1 className={styles.name}>
-            <Text text={page.properties.Name.title} />
-          </h1>
+          <div className="mb-10">
+            <h1 className={styles.name}>
+              <Text text={page.properties.Name.title} />
+            </h1>
+            <div className={styles.date}>
+              <span>{page.properties.Date.date.start}</span>
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <Image
+              className="rounded-xl"
+              objectFit="cover"
+              src={page.cover?.external.url}
+              placeholder="blur"
+              blurDataURL={page.cover?.external.url}
+              width={684}
+              height={400}
+              layout="intrinsic"
+              alt={"article cover"}
+            />
+          </div>
           <section>
             {blocks.map((block) => (
               <Fragment key={block.id}>{renderBlock(block)}</Fragment>
             ))}
-            <Link href="/">
-              <a className={styles.back}>← Go home</a>
-            </Link>
+            <div className="mt-6 md:mt-8">
+              <div className="space-y-6 md:space-y-0 md:space-x-4">
+                <Button
+                  buttonType="secondary"
+                  onButtonClick={() => push("/blog")}
+                  buttonSize="small"
+                >
+                  Back to the blog
+                </Button>
+              </div>
+            </div>
           </section>
         </article>
       </div>

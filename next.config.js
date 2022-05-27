@@ -12,6 +12,7 @@ module.exports = {
       "images.unsplash.com", // For blog posts that use an external cover ima ge
       "pbs.twimg.com", // Twitter Profile Picture
       "res.cloudinary.com",
+      "www.notion.so",
     ],
   },
 }
