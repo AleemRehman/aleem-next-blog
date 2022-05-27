@@ -91,3 +91,68 @@ export const getPublishedArticles = async (databaseId) => {
 
   return { articles }
 }
+
+export const getRecommendedArticles = async (databaseId, tags) => {
+  let filters = []
+
+  if (tags) {
+    tags.map((tag) => {
+      let filter = {
+        property: "Tags",
+        multi_select: {
+          contains: tag,
+        },
+      }
+
+      filters.push(filter)
+    })
+  }
+
+  let orTagsFilter = {
+    or: filters,
+  }
+
+  let test = {
+    and: [
+      {
+        property: "Status",
+        select: {
+          equals: "Published",
+        },
+      },
+      {
+        property: "Type",
+        select: {
+          equals: "Article",
+        },
+      },
+      {
+        property: "Public",
+        checkbox: {
+          equals: true,
+        },
+      },
+    ],
+    orTagsFilter,
+  }
+
+  console.log(test)
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: test,
+    sorts: [
+      {
+        property: "Date",
+        direction: "descending",
+      },
+    ],
+  })
+
+  var results = response.results
+
+  var articles = results.map((result: any) => {
+    return generateArticleVariable(result)
+  })
+
+  return { articles }
+}

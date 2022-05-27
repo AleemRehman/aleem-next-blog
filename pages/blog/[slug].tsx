@@ -1,7 +1,12 @@
 import { Fragment } from "react"
 import Head from "next/head"
-import { getPage, getBlocks, getNotionData } from "utils/api"
-import Link from "next/link"
+import {
+  getPage,
+  getBlocks,
+  getNotionData,
+  getRecommendedArticles,
+} from "utils/api"
+import { ArticleList } from "components/articlescarousel"
 import { Button } from "components/button/button"
 import { useRouter } from "next/router"
 import { databaseId } from "../index"
@@ -10,7 +15,7 @@ import Page from "components/page"
 import styles from "components/pagerender/pagerender.module.scss"
 import { Text, renderBlock } from "components/pagerender/pagerender"
 
-export default function Post({ page, blocks }) {
+export default function Post({ page, blocks, recommendedArticles }) {
   if (!page || !blocks) {
     return <div />
   }
@@ -50,7 +55,7 @@ export default function Post({ page, blocks }) {
             {blocks.map((block) => (
               <Fragment key={block.id}>{renderBlock(block)}</Fragment>
             ))}
-            <div className="mt-6 md:mt-8">
+            <div className="mt-6 md:mt-8 mb-8">
               <div className="space-y-6 md:space-y-0 md:space-x-4">
                 <Button
                   buttonType="secondary"
@@ -60,6 +65,9 @@ export default function Post({ page, blocks }) {
                   Back to the blog
                 </Button>
               </div>
+            </div>
+            <div>
+              <ArticleList articles={recommendedArticles} />
             </div>
           </section>
         </article>
@@ -90,6 +98,19 @@ export const getStaticProps = async (context) => {
   const page = await getPage(filter[0].id)
   const blocks = await getBlocks(filter[0].id)
 
+  let tags: string[] = []
+
+  page.properties.Tags.multi_select.map((tag) => {
+    if (!tags.includes(tag.name)) {
+      const newList = [...tags, tag.name]
+      tags = newList
+    }
+    return { name: tag.name, id: tag.id }
+  })
+
+  const { articles } = await getRecommendedArticles(databaseId, tags)
+
+  console.log(articles)
   const childBlocks = await Promise.all(
     blocks
       .filter((block) => block.has_children)
@@ -114,6 +135,7 @@ export const getStaticProps = async (context) => {
     props: {
       page,
       blocks: blocksWithChildren,
+      recommendedArticles: articles,
     },
     revalidate: 1,
   }
