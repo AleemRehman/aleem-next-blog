@@ -86,10 +86,11 @@ export default function Post({ page, blocks, recommendedArticles }) {
                 </Button>
               </div>
             </div>
-            <div>
-              <ArticleList showTags={false} articles={recommendedArticles} />
-            </div>
           </section>
+          <hr className="mt-8 mb-8" />
+          <div>
+            <ArticleList showTags={false} articles={recommendedArticles} />
+          </div>
         </article>
       </div>
     </Page>

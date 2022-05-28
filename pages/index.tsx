@@ -36,15 +36,12 @@ export default function Home({ recentArticles }) {
             <div>
               <div
                 className={
-                  "grid items-center grid-cols-1 mt-12 text-center md:mt-20 mb-4 md:mb-8 md:text-left md:grid-cols-6 " +
+                  "grid items-center grid-cols-1 mt-8  text-center md:mt-10 mb-4 md:mb-8 md:text-left md:grid-cols-6 md:pr-48" +
                   styles.header_grid
                 }
               >
                 <h1 className={styles.terminal_text}>
-                  &gt;{" "}
-                  <span>
-                    My name is Aleem. I am an Architect, Engineer and Blogger.
-                  </span>
+                  <span>Architect, Cloud Engineer & Leader.</span>
                 </h1>
               </div>
               <div className="">

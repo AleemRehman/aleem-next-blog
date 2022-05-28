@@ -10,14 +10,15 @@ body {
 }
 
 body {
-  background-color: $grey;
+  background-color: #f4ede3;
   color: black;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: $grey-50;
-    color: rgb(245, 236, 236);
+    background-color: #f4ede3;
+    // color: rgb(245, 236, 236);
+    color: black;
   }
 }
 
@@ -48,7 +49,7 @@ h5 {
 }
 
 h5 {
-  color: $green;
+  color: $creamish-25;
   opacity: 95%;
 }
 
@@ -62,4 +63,15 @@ h5 {
   color: $creamish-25;
   opacity: 35%;
   z-index: 1;
+}
+
+.tag-colour {
+  background-color: #b02626;
+  color: $chalk;
+}
+
+.read-more {
+  color: #912020;
+  text-transform: uppercase;
+  @apply text-xs font-bold hover:fill-orange-300;
 }

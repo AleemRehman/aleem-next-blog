@@ -10,18 +10,18 @@
   -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
   &:hover {
-    color: $green !important;
+    color: $creamish-25 !important;
   }
 }
 
 .inActiveLink {
   @extend .link;
-  color: $grey-10 !important;
+  color: $grey-50 !important;
   font-weight: 500;
 }
 
 .linkIsActive {
   @extend .link;
-  color: $chalk !important;
+  color: black !important;
   font-weight: 650;
 }
