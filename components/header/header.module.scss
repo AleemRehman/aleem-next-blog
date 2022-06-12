@@ -14,6 +14,18 @@
   }
 }
 
+.terminal_text {
+  @apply order-2 col-span-5 text-8xl leading-tight md:leading-normal md:order-1 sm:text-7xl;
+}
+
+.header_container {
+  background-color: #b88c53;
+}
+
+.header_grid {
+  min-height: 150px;
+}
+
 .inActiveLink {
   @extend .link;
   color: $grey-50 !important;

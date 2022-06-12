@@ -10,16 +10,8 @@ body {
 }
 
 body {
-  background-color: #f4ede3;
+  background-color: white;
   color: black;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #f4ede3;
-    // color: rgb(245, 236, 236);
-    color: black;
-  }
 }
 
 a {
@@ -74,4 +66,20 @@ h5 {
   color: #912020;
   text-transform: uppercase;
   @apply text-xs font-bold hover:fill-orange-300;
+}
+
+@layer utilities {
+  @layer components {
+    .masonry-3-col {
+      column-count: 3;
+      column-gap: 1em;
+    }
+    .masonry-2-col {
+      column-count: 2;
+      column-gap: 1em;
+    }
+    .break-inside {
+      break-inside: avoid;
+    }
+  }
 }

@@ -6,21 +6,23 @@ import { Article } from "utils/variables"
 type Props = {
   article: Article
   showTags: boolean
+  masonryCard: boolean
 }
 
 function handleArticleClick(slug, router) {
   router.push(`/writings/${slug}`)
 }
 
-export function ArticleCard({ showTags, article }: Props) {
+export function ArticleCard({ showTags, article, masonryCard }: Props) {
   const router = useRouter()
   return (
     <div
       // onClick={() => handleArticleClick(article.slug, router)}
       key={article.title}
+      className={masonryCard ? "break-inside mb-8" : ""}
     >
       <div>
-        <div className="article-card">
+        <div className={"article-card"}>
           <button onClick={() => handleArticleClick(article.slug, router)}>
             <Image
               className="group-hover:opacity-75"
@@ -35,9 +37,11 @@ export function ArticleCard({ showTags, article }: Props) {
             />
           </button>
           <div className="text-left">
-            <h1 className="text-3xl">{article.title}</h1>
+            <h1 className="text-2xl leading-7 mb-2 tracking-tight">
+              {article.title}
+            </h1>
             <div className="mb-2">
-              <p>{article.summary}</p>
+              <p className="text-sm text-slate-700">{article.summary}</p>
             </div>
           </div>
 

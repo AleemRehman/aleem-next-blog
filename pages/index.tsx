@@ -33,7 +33,7 @@ export default function Home({ recentArticles }) {
       <Page>
         <div className="z-10">
           <div>
-            <div>
+            {/* <div>
               <div
                 className={
                   "grid items-center grid-cols-1 mt-8  text-center md:mt-10 mb-4 md:mb-8 md:text-left md:grid-cols-6 md:pr-48" +
@@ -41,7 +41,7 @@ export default function Home({ recentArticles }) {
                 }
               >
                 <h1 className={styles.terminal_text}>
-                  <span>Architect, Cloud Engineer & Leader.</span>
+                  <span>Creative Technologist</span>
                 </h1>
               </div>
               <div className="">
@@ -50,6 +50,7 @@ export default function Home({ recentArticles }) {
                     buttonType="primary"
                     onButtonClick={() => push("/blog")}
                     buttonSize="medium"
+                    rounded={true}
                   >
                     Read my Articles
                   </Button>
@@ -57,12 +58,13 @@ export default function Home({ recentArticles }) {
                     buttonType="secondary"
                     onButtonClick={() => push("/blog")}
                     buttonSize="medium"
+                    rounded={true}
                   >
                     Check out my Projects
                   </Button>
                 </div>
               </div>
-            </div>
+            </div> */}
             <hr className={styles.index_divider} />
             <div>
               <h2 className="mb-4 font-semibold text-4xl">
@@ -71,7 +73,11 @@ export default function Home({ recentArticles }) {
               <h5 className="mb-8 font-semibold text-lg">
                 Check out some recent writings below.
               </h5>
-              <ArticleList showTags={true} articles={recentArticles} />
+              <ArticleList
+                showTags={true}
+                articles={recentArticles}
+                masonry={true}
+              />
             </div>
           </div>
         </div>

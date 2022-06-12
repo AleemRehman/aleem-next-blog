@@ -27,31 +27,35 @@ export default function Post({ page, blocks, recommendedArticles }) {
           <title>{page.properties.Name.title[0].plain_text}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-
         <article className={styles.container}>
-          <div className="mb-10">
-            <h1 className={styles.name}>
-              <Text text={page.properties.Name.title} />
-            </h1>
-            <div className={styles.date}>
-              <span>{page.properties.Date.date.start}</span>
+          <div className={styles.top_row}>
+            <div className={styles.row_container}>
+              <div className={styles.row_container_flexbox}>
+                <div className="mb-8 mt-8">
+                  <Image
+                    className="4xl"
+                    objectFit="cover"
+                    src={page.cover?.external.url}
+                    placeholder="blur"
+                    blurDataURL={page.cover?.external.url}
+                    width={1200}
+                    height={1000}
+                    layout="intrinsic"
+                    alt={"article cover"}
+                  />
+                </div>
+                <div className={styles.text_container}>
+                  <h1 className={styles.name}>
+                    <Text text={page.properties.Name.title} />
+                  </h1>
+                  <div className={styles.date}>
+                    <span>{page.properties.Date.date.start}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div className="mb-4">
-            <Image
-              className="rounded-xl"
-              objectFit="cover"
-              src={page.cover?.external.url}
-              placeholder="blur"
-              blurDataURL={page.cover?.external.url}
-              width={684}
-              height={400}
-              layout="intrinsic"
-              alt={"article cover"}
-            />
-          </div>
-          <section>
+          <section className={styles.article_section}>
             {blocks.map((block) => (
               <Fragment key={block.id}>{renderBlock(block)}</Fragment>
             ))}
@@ -61,6 +65,7 @@ export default function Post({ page, blocks, recommendedArticles }) {
                   buttonType="secondary"
                   onButtonClick={() => push("/writings")}
                   buttonSize="small"
+                  rounded={false}
                 >
                   Back to Writings
                 </Button>
@@ -68,6 +73,7 @@ export default function Post({ page, blocks, recommendedArticles }) {
                   buttonType="primary"
                   onButtonClick={() => push("/writings")}
                   buttonSize="small"
+                  rounded={true}
                 >
                   Go to project
                   <svg

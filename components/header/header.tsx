@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { Button } from "components/button/button"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import styles from "components/header/header.module.scss"
@@ -14,9 +15,10 @@ const Header = (): JSX.Element => {
   const router = useRouter()
   let [isOpen, setIsOpen] = useState(false)
   const pathname = router.pathname.split("/[")[0] // active paths on dynamic
+  const { push } = useRouter()
 
   return (
-    <>
+    <div className="h-screen header_container">
       <div className="relative z-50 text-gray-900 dark:text-gray-100">
         <div className="nav-container py-2 md:py-4">
           <div className="flex items-center justify-between max-w-6xl px-4 py-6 mx-auto sm:px-6 md:space-x-10">
@@ -86,7 +88,41 @@ const Header = (): JSX.Element => {
           </div>
         </div>
       </div>
-    </>
+      <div className="relative z-50">
+        <div>
+          <div
+            className={
+              "grid items-center grid-cols-1 mt-8  text-center md:mt-10 mb-4 md:mb-8 md:text-left md:grid-cols-6 md:pr-48" +
+              styles.header_grid
+            }
+          >
+            <h1 className={styles.terminal_text}>
+              <span>Creative Technologist</span>
+            </h1>
+          </div>
+          <div className="">
+            <div className="space-y-6 md:space-y-0 md:space-x-4">
+              <Button
+                buttonType="primary"
+                onButtonClick={() => push("/blog")}
+                buttonSize="medium"
+                rounded={true}
+              >
+                Read my Articles
+              </Button>
+              <Button
+                buttonType="secondary"
+                onButtonClick={() => push("/blog")}
+                buttonSize="medium"
+                rounded={true}
+              >
+                Check out my Projects
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 

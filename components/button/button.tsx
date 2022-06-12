@@ -3,6 +3,7 @@ import styles from "components/button/button.module.scss"
 type Props = {
   buttonType: string
   buttonSize: string
+  rounded: boolean
   onButtonClick: Function
 }
 
@@ -10,13 +11,16 @@ export const Button: React.FC<Props> = ({
   buttonType,
   buttonSize,
   onButtonClick,
+  rounded,
   children,
 }) => {
   return (
     <button
       aria-label="button"
       type="button"
-      className={`md:w-auto md:inline-flex py-3 px-2 md:px-12 rounded-full w-full ${
+      className={`md:w-auto md:inline-flex py-3 px-2 md:px-12 ${
+        rounded ? "rounded-full" : ""
+      } w-full ${
         buttonType === "primary"
           ? styles.primary + " hover:ring-4 ring-zinc-500"
           : buttonType === "secondary"
